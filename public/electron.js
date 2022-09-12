@@ -19,9 +19,13 @@ function createWindow() {
     width: 800,
     height: 800,
     webPreferences: {
-      nodeIntegration: true,
+      contextIsolation: true,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
+  //---DEVTOOLS---
+  //win.webContents.openDevTools();
+  //--------------
   win.loadURL(startUrl);
   app.on("window-all-closed", () => {
     if (process.platform !== "darwin") {
